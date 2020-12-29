@@ -179,6 +179,11 @@ public class frmMain1 extends javax.swing.JFrame {
                 btnreportesmouseexited(evt);
             }
         });
+        btnreportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreportesActionPerformed(evt);
+            }
+        });
 
         lbusuario2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbusuario2.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,6 +358,15 @@ int xx,xy;
         xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
+
+    private void btnreportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportesActionPerformed
+                   frmReportesNotas frmRN = new frmReportesNotas();
+        PanelPrincipal.add(frmRN, "ReporteNotas");
+     
+        vista.show(PanelPrincipal, "ReporteNotas");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_btnreportesActionPerformed
     private void pegarImagenes() {
       //  ImageIcon imagen = new ImageIcon("src/IMG/slider2.jpg");
      //   Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(lbslider.getWidth(), lbslider.getHeight(), Image.SCALE_DEFAULT));

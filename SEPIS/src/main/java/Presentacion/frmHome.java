@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import Datos.D_Criticos;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
@@ -16,6 +19,22 @@ public class frmHome extends javax.swing.JPanel {
      */
     public frmHome() {
         initComponents();
+       // actualizar();
+    }
+
+    public void actualizar() {
+
+        D_Criticos func = new D_Criticos();
+        DefaultTableModel modelo;
+        modelo = func.listarcriticosn();
+        Tablalistado.setModel(modelo);
+    }
+       public void actualizar2() {
+
+        D_Criticos func = new D_Criticos();
+        DefaultTableModel modelo2;
+        modelo2 = func.listarcriticosa();
+        Tablalistado.setModel(modelo2);
     }
 
     /**
@@ -28,13 +47,13 @@ public class frmHome extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Tablalistado = new javax.swing.JTable();
+        cbcriticos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -45,9 +64,14 @@ public class frmHome extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tablalistado);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASISTENCIA", "NOTAS" }));
+        cbcriticos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASISTENCIA", "NOTAS" }));
+        cbcriticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbcriticosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,7 +85,7 @@ public class frmHome extends javax.swing.JPanel {
                 .addContainerGap(439, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbcriticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58))
         );
@@ -71,18 +95,27 @@ public class frmHome extends javax.swing.JPanel {
                 .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbcriticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbcriticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcriticosActionPerformed
+        if (cbcriticos.getSelectedItem()=="NOTAS") {
+            actualizar();
+        }
+         if (cbcriticos.getSelectedItem()=="ASISTENCIA") {
+            actualizar2();
+        }
+    }//GEN-LAST:event_cbcriticosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable Tablalistado;
+    private javax.swing.JComboBox<String> cbcriticos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

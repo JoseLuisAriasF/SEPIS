@@ -32,14 +32,14 @@ public class frmMain extends javax.swing.JFrame {
     frmNotas2 frmN = new frmNotas2();
     frmUsuario frmU = new frmUsuario();
     frmHome frmH = new frmHome();
-    static E_Usuario obj=new E_Usuario();
+    static E_Usuario obj = new E_Usuario();
 
     public frmMain(E_Usuario obj) {
         initComponents();
 
         setSize(950, 600);
-        JOptionPane.showMessageDialog(null,obj.getNombre());
-        
+        JOptionPane.showMessageDialog(null,"Bienvenido(a) "+obj.getNombre());
+
         loaddata(obj);
         pegarImagenes();
         this.setLocationRelativeTo(null);
@@ -51,8 +51,6 @@ public class frmMain extends javax.swing.JFrame {
         this.repaint();
 
     }
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,6 +233,11 @@ public class frmMain extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnreportes1mouseexited(evt);
+            }
+        });
+        btnreportes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreportes1ActionPerformed(evt);
             }
         });
 
@@ -430,6 +433,15 @@ public class frmMain extends javax.swing.JFrame {
     private void btnconfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfigActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnconfigActionPerformed
+
+    private void btnreportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportes1ActionPerformed
+        frmReportesNotas frmRN = new frmReportesNotas();
+        PanelPrincipal.add(frmRN, "ReporteNotas");
+
+        vista.show(PanelPrincipal, "ReporteNotas");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();       
+    }//GEN-LAST:event_btnreportes1ActionPerformed
 
     /**
      * @param args the command line arguments
