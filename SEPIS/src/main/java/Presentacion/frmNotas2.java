@@ -5,9 +5,21 @@
  */
 package Presentacion;
 
+import Datos.ClsConexion;
+import Datos.D_Ficha;
+import Datos.D_Notas;
+import Datos.D_Notas2;
+import Entidad.E_Ficha;
+import Entidad.E_Notas;
 import static Presentacion.frmMain.PanelPrincipal;
 import java.awt.CardLayout;
+import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,14 +30,71 @@ public class frmNotas2 extends javax.swing.JPanel {
     /**
      * Creates new form frmNotas2
      */
-        CardLayout vista;
+    CardLayout vista;
+
+    ClsConexion conect = new ClsConexion();
+    Connection cn = conect.conectar();
+
     public frmNotas2() {
         initComponents();
-    this.setSize(950, 440);
-        vista=(CardLayout)(PanelPrincipal.getLayout());
-     
+        //    actualizar();
+        mostrar("");
+        listarcb();
+
+        this.setSize(950, 440);
+        vista = (CardLayout) (PanelPrincipal.getLayout());
+
     }
-    
+
+    public void p3cargar() {
+        D_Notas2 func = new D_Notas2();
+        DefaultTableModel modelo2;
+        //    E_Notas dts=new E_Notas();
+        //     dts.setCod_alum(cod_alum);
+        lbcodalum.setText(cod_alum);
+        lbnombre.setText(nombre);
+        lbciclo.setText(ciclo);
+        modelo2 = func.listarestudiante(cod_alum);
+        Tablalistado2.setModel(modelo2);
+        //
+        lbnombre3.setText(nombre);
+        lbfecha.setText(String.valueOf(dateFormat.format(date)));
+    }
+    public void p4cargar(){
+         D_Ficha func = new D_Ficha();
+        DefaultTableModel modelo3;
+        modelo3 = func.listarficha(cod_alum);
+        Tablalistado3.setModel(modelo3);
+    }
+
+    public void actualizar() {
+
+        D_Notas2 func = new D_Notas2();
+        DefaultTableModel modelo;
+        modelo = func.mostrar("");
+        Tablalistado.setModel(modelo);
+    }
+
+    void mostrar(String buscar) {
+        try {
+            DefaultTableModel modelo;
+            D_Notas2 func = new D_Notas2();
+            modelo = func.mostrar(buscar);
+
+            Tablalistado.setModel(modelo);
+            //     lblTotalRegistros.setText("Total registros " + Integer.toString(func.totalregistros));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+    public void listarcb() {
+        E_Notas cliente = new E_Notas();
+
+        cliente.listarcursos(cbcursos);
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,61 +107,66 @@ public class frmNotas2 extends javax.swing.JPanel {
         PanelPrincipal = new javax.swing.JPanel();
         p1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Tablalistado = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbcursos = new javax.swing.JComboBox<>();
+        txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbunidad = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
+        txtver = new javax.swing.JButton();
+        btnrevisar1 = new javax.swing.JButton();
         p2 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lbfecha = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        txtoa = new javax.swing.JScrollPane();
         jTextArea5 = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lbnombre3 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtaa = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        txtop = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtpp = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        txtap = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtpa = new javax.swing.JTextArea();
         jButton6 = new javax.swing.JButton();
         p3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lbcodalum = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         btnback = new javax.swing.JButton();
+        lbciclo = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lbnombre = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Tablalistado2 = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        p4 = new javax.swing.JPanel();
+        btnback1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tablalistado3 = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -101,7 +175,7 @@ public class frmNotas2 extends javax.swing.JPanel {
         p1.setBackground(new java.awt.Color(0, 102, 204));
         p1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,39 +186,32 @@ public class frmNotas2 extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Tablalistado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTable1MousePressed(evt);
+                TablalistadoMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tablalistado);
 
-        p1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 890, 240));
-
-        jCheckBox1.setBackground(new java.awt.Color(0, 102, 204));
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Revisado");
-        p1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 90, -1, -1));
+        p1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 810, 240));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Curso:");
         p1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
-        jComboBox2.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PROGRAMACION I", "PROGRAMACION II", "GESTION DE TI" }));
-        p1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 150, 30));
-        p1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, 30));
+        cbcursos.setBackground(new java.awt.Color(102, 102, 102));
+        cbcursos.setForeground(new java.awt.Color(255, 255, 255));
+        p1.add(cbcursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 150, 30));
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        p1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 170, 30));
-
-        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
-        p1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 90, 30));
+        txtBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        p1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 170, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,16 +223,31 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel3.setText("Buscar Alumno:");
         p1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        jComboBox3.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UNIDAD I", "UNIDAD II", "UNIDAD III" }));
-        p1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 150, 30));
+        cbunidad.setBackground(new java.awt.Color(102, 102, 102));
+        cbunidad.setForeground(new java.awt.Color(255, 255, 255));
+        p1.add(cbunidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 150, 30));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Unidad:");
         p1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
-        p1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, -1, -1));
+        p1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, -1));
+
+        txtver.setText("Ver");
+        txtver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtverActionPerformed(evt);
+            }
+        });
+        p1.add(txtver, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 190, -1, -1));
+
+        btnrevisar1.setText("REVISADO");
+        btnrevisar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrevisar1ActionPerformed(evt);
+            }
+        });
+        p1.add(btnrevisar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, -1, -1));
 
         PanelPrincipal.add(p1, "card2");
 
@@ -186,11 +268,11 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel14.setText("Fecha:");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 91, -1, -1));
 
-        jLabel15.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("14/12/2020");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(768, 91, -1, -1));
+        lbfecha.setBackground(new java.awt.Color(0, 0, 0));
+        lbfecha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbfecha.setForeground(new java.awt.Color(255, 255, 255));
+        lbfecha.setText("14/12/2020");
+        jPanel2.add(lbfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(768, 91, -1, -1));
 
         jLabel16.setBackground(new java.awt.Color(0, 0, 0));
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -201,9 +283,9 @@ public class frmNotas2 extends javax.swing.JPanel {
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jTextArea5.setText("Academicos");
-        jScrollPane5.setViewportView(jTextArea5);
+        txtoa.setViewportView(jTextArea5);
 
-        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 290, -1));
+        jPanel2.add(txtoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, 290, -1));
 
         jLabel17.setBackground(new java.awt.Color(0, 0, 0));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -211,11 +293,11 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel17.setText("Nombre del Tutorado:");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 91, -1, -1));
 
-        jLabel18.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("José Luis Arias Flores");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+        lbnombre3.setBackground(new java.awt.Color(0, 0, 0));
+        lbnombre3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbnombre3.setForeground(new java.awt.Color(255, 255, 255));
+        lbnombre3.setText("José Luis Arias Flores");
+        jPanel2.add(lbnombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
         jLabel19.setBackground(new java.awt.Color(0, 0, 0));
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -229,24 +311,24 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel20.setText("01");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(798, 64, -1, -1));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("Academicos");
-        jScrollPane3.setViewportView(jTextArea3);
+        txtaa.setColumns(20);
+        txtaa.setRows(5);
+        txtaa.setText("Academicos");
+        jScrollPane3.setViewportView(txtaa);
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 290, -1));
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jTextArea6.setText("Personales");
-        jScrollPane6.setViewportView(jTextArea6);
+        txtop.setColumns(20);
+        txtop.setRows(5);
+        txtop.setText("Personales");
+        jScrollPane6.setViewportView(txtop);
 
         jPanel2.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 290, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Personales");
-        jScrollPane4.setViewportView(jTextArea1);
+        txtpp.setColumns(20);
+        txtpp.setRows(5);
+        txtpp.setText("Personales");
+        jScrollPane4.setViewportView(txtpp);
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 167, 290, -1));
 
@@ -279,19 +361,24 @@ public class frmNotas2 extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("REGISTRAR");
         jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 543, 157, 57));
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("Personales");
-        jScrollPane7.setViewportView(jTextArea4);
+        txtap.setColumns(20);
+        txtap.setRows(5);
+        txtap.setText("Personales");
+        jScrollPane7.setViewportView(txtap);
 
         jPanel2.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 290, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Academicos");
-        jScrollPane8.setViewportView(jTextArea2);
+        txtpa.setColumns(20);
+        txtpa.setRows(5);
+        txtpa.setText("Academicos");
+        jScrollPane8.setViewportView(txtpa);
 
         jPanel2.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 167, 290, -1));
 
@@ -327,16 +414,6 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel7.setText("Nombre:");
         p3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("JOSÉ LUIS ARIAS FLORES");
-        p3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("ING. DE SISTEMAS");
-        p3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
-
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("910173075");
@@ -357,15 +434,20 @@ public class frmNotas2 extends javax.swing.JPanel {
         jLabel11.setText("Carrera Profesional:");
         p3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("2017058805");
-        p3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        lbcodalum.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbcodalum.setForeground(new java.awt.Color(255, 255, 255));
+        lbcodalum.setText("2017058805");
+        p3.add(lbcodalum, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("VER FICHAS TUTORIAS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         p3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 220, 40));
 
         jButton5.setBackground(new java.awt.Color(0, 0, 0));
@@ -379,7 +461,31 @@ public class frmNotas2 extends javax.swing.JPanel {
         });
         p3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 220, 50));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        btnback.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        btnback.setText("<");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+        p3.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        lbciclo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbciclo.setForeground(new java.awt.Color(255, 255, 255));
+        lbciclo.setText("0");
+        p3.add(lbciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Ciclo:");
+        p3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
+
+        lbnombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbnombre.setForeground(new java.awt.Color(255, 255, 255));
+        lbnombre.setText("ING. DE SISTEMAS");
+        p3.add(lbnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+
+        Tablalistado2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -390,76 +496,176 @@ public class frmNotas2 extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane5.setViewportView(Tablalistado2);
 
-        p3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 630, 190));
+        p3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, 160));
 
-        btnback.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        btnback.setText("<");
-        btnback.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbackActionPerformed(evt);
-            }
-        });
-        p3.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("ING. DE SISTEMAS");
+        p3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         PanelPrincipal.add(p3, "card4");
+
+        p4.setBackground(new java.awt.Color(0, 102, 204));
+        p4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnback1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        btnback1.setText("<");
+        btnback1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnback1ActionPerformed(evt);
+            }
+        });
+        p4.add(btnback1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        Tablalistado3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(Tablalistado3);
+
+        p4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, 280));
+
+        PanelPrincipal.add(p4, "card5");
 
         add(PanelPrincipal, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
-                 PanelPrincipal.add(p3, "p3");
-      vista.show(PanelPrincipal, "p3");
-        SwingUtilities.updateComponentTreeUI(this);
-        this.repaint();
-    }//GEN-LAST:event_jTable1MousePressed
+    private void TablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablalistadoMousePressed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-                       PanelPrincipal.add(p2, "p2");
-      vista.show(PanelPrincipal, "p2");
+        int fila = Tablalistado.rowAtPoint(evt.getPoint());
+        nombre = (Tablalistado.getValueAt(fila, 1).toString());
+        ciclo = (Tablalistado.getValueAt(fila, 2).toString());
+        estado = (Tablalistado.getValueAt(fila, 3).toString());
+        cod_alum = (Tablalistado.getValueAt(fila, 0).toString());
+    //    JOptionPane.showMessageDialog(null, cod_alum + estado);
+        /*
+        PanelPrincipal.add(p3, "p3");
+        vista.show(PanelPrincipal, "p3");
         SwingUtilities.updateComponentTreeUI(this);
-        this.repaint();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-                           PanelPrincipal.add(p1, "p2");
-      vista.show(PanelPrincipal, "p2");
-        SwingUtilities.updateComponentTreeUI(this);
-        this.repaint();
-    }//GEN-LAST:event_btnbackActionPerformed
-
+        this.repaint(); */
+    }//GEN-LAST:event_TablalistadoMousePressed
+    String estado;
+    String cod_alum;
+    String nombre;
+    String ciclo;
+    String Unidad;
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-                          PanelPrincipal.add(p3, "p3");
-      vista.show(PanelPrincipal, "p3");
+        PanelPrincipal.add(p3, "p3");
+        vista.show(PanelPrincipal, "p3");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        mostrar(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtverActionPerformed
+        // TODO add your handling code here:
+        PanelPrincipal.add(p3, "p3");
+        vista.show(PanelPrincipal, "p3");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+        p3cargar();
+    }//GEN-LAST:event_txtverActionPerformed
+
+    private void btnrevisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrevisar1ActionPerformed
+        E_Notas dts = new E_Notas();
+        D_Notas2 func = new D_Notas2();
+        dts.setEstado("0");
+        dts.setCod_alum(cod_alum);
+        JOptionPane.showMessageDialog(null, "MODIFICADO");
+        //  JOptionPane.showMessageDialog(null,cod_alum+estado);
+        func.editarestado(dts);
+        actualizar();
+    }//GEN-LAST:event_btnrevisar1ActionPerformed
+      Date date = new Date();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     //       Date date = new Date();
+
+     //   DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");     
+        E_Ficha dts = new E_Ficha();
+        D_Ficha func = new D_Ficha();
+        
+        dts.setCod_alum(cod_alum);
+        dts.setProblema_academico(txtpa.getText());
+        dts.setProblema_personal(txtpp.getText());
+         dts.setAcuerdo_academico(txtaa.getText());
+        dts.setAcuerdo_personal(txtap.getText());
+        dts.setObservacion_academico(txtop.getText());
+        dts.setObservacion_personal(txtop.getText());
+        dts.setNombre("LILIANA VEGA BERNAL");
+        dts.setFecha(String.valueOf(dateFormat.format(date)));
+        
+        JOptionPane.showMessageDialog(null, "Registrado Correctamente");
+        func.insertarficha(dts);
+     //   actualizar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        PanelPrincipal.add(p1, "p2");
+        vista.show(PanelPrincipal, "p2");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        PanelPrincipal.add(p2, "p2");
+        vista.show(PanelPrincipal, "p2");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnback1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnback1ActionPerformed
+              PanelPrincipal.add(p3, "p3");
+        vista.show(PanelPrincipal, "p3");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_btnback1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       PanelPrincipal.add(p4, "p4");
+        vista.show(PanelPrincipal, "p4");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+        p4cargar();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JTable Tablalistado;
+    private javax.swing.JTable Tablalistado2;
+    private javax.swing.JTable Tablalistado3;
     private javax.swing.JButton btnback;
+    private javax.swing.JButton btnback1;
+    private javax.swing.JButton btnrevisar1;
+    private javax.swing.JComboBox<E_Notas> cbcursos;
+    private javax.swing.JComboBox<E_Notas> cbunidad;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -468,12 +674,12 @@ public class frmNotas2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -485,17 +691,23 @@ public class frmNotas2 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbciclo;
+    private javax.swing.JLabel lbcodalum;
+    private javax.swing.JLabel lbfecha;
+    private javax.swing.JLabel lbnombre;
+    private javax.swing.JLabel lbnombre3;
     private javax.swing.JPanel p1;
     private javax.swing.JPanel p2;
     private javax.swing.JPanel p3;
+    private javax.swing.JPanel p4;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextArea txtaa;
+    private javax.swing.JTextArea txtap;
+    private javax.swing.JScrollPane txtoa;
+    private javax.swing.JTextArea txtop;
+    private javax.swing.JTextArea txtpa;
+    private javax.swing.JTextArea txtpp;
+    private javax.swing.JButton txtver;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class D_Login {
 
-    frmMain fs = new frmMain();
+/*   frmMain fs = new frmMain();
     String sSql;
 
     public void Login(String usuario, String contraseña) {
@@ -51,5 +51,5 @@ public class D_Login {
 
         }
 
-    }
+    } */
 }

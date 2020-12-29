@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class D_Login2 {
 
     frmMain fs ;
-    String sSql;
+    String sSql= "";
 
    
     public void Login(String usuario, String contraseña) {
@@ -55,9 +55,6 @@ public class D_Login2 {
       
              fs=new frmMain(obj);
                 
-//                  UserLoginCache.nombre=resultado.getString("nombre");
-
-                // ra.setVisible(false);
                 fs.setVisible(true);
 
             } else {

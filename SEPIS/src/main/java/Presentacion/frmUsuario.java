@@ -46,8 +46,6 @@ public class frmUsuario extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtapellido = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -79,12 +77,6 @@ public class frmUsuario extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 86, -1, -1));
-        add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 196, 170, 30));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Apellido:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 166, -1, -1));
         add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 276, 170, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -102,11 +94,11 @@ public class frmUsuario extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cargo:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 166, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         cbcargo.setForeground(new java.awt.Color(255, 255, 255));
         cbcargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "TUTOR" }));
-        add(cbcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 196, -1, 30));
+        add(cbcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,11 +108,11 @@ public class frmUsuario extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Estado:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 246, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
         cbestado.setForeground(new java.awt.Color(255, 255, 255));
         cbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVO", "INACTIVO" }));
-        add(cbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 276, -1, 30));
+        add(cbestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, 30));
 
         Tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,7 +186,7 @@ public class frmUsuario extends javax.swing.JPanel {
         D_Usuario func = new D_Usuario();
         
         dts.setDni(txtdni.getText());
-        dts.setNombre(txtnombre.getText()+" "+txtapellido.getText());
+        dts.setNombre(txtnombre.getText());
         dts.setTelefono(txttelefono.getText());
         dts.setUsuario(txtusuario.getText());
         dts.setContraseña(txtcontraseña.getText());
@@ -233,9 +225,10 @@ public class frmUsuario extends javax.swing.JPanel {
         txtdni.setText(Tablalistado.getValueAt(fila, 1).toString());
         txtnombre.setText(Tablalistado.getValueAt(fila, 2).toString());
         txttelefono.setText(Tablalistado.getValueAt(fila, 3).toString());
-        txtcontraseña.setText(Tablalistado.getValueAt(fila, 4).toString());
-        cbcargo.setSelectedItem(Tablalistado.getValueAt(fila, 5).toString());
-        cbestado.setSelectedItem(Tablalistado.getValueAt(fila, 6).toString());
+        txtusuario.setText(Tablalistado.getValueAt(fila, 4).toString());
+        txtcontraseña.setText(Tablalistado.getValueAt(fila, 5).toString());
+        cbcargo.setSelectedItem(Tablalistado.getValueAt(fila, 6).toString());
+        cbestado.setSelectedItem(Tablalistado.getValueAt(fila, 7).toString());
         //  txtApellidos.setText(Tablalistado.getValueAt(fila, 3).toString()); 
     }//GEN-LAST:event_TablalistadoMousePressed
 
@@ -250,8 +243,8 @@ public class frmUsuario extends javax.swing.JPanel {
                         Gson gson= new Gson();
                         
                         PersonaDNI per = gson.fromJson(respuesta,PersonaDNI.class);
-                        txtnombre.setText(per.getNombres());
-                        txtapellido.setText(per.getApellido_paterno()+" "+per.getApellido_materno());
+                        txtnombre.setText(per.getNombres()+" "+per.getApellido_paterno()+" "+per.getApellido_materno());
+                     //   txtapellido.setText(per.getApellido_paterno()+" "+per.getApellido_materno());
                   //      System.out.println(per.getApellido_paterno());
                        //JsonElement root = jp.parse(new InputStreamReader((Input.Stream)request.getContent()));
                         
@@ -293,13 +286,11 @@ public class frmUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcontraseña;
     private javax.swing.JTextField txtdni;
     private javax.swing.JTextField txtnombre;

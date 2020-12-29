@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import Datos.D_Criticos;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
@@ -16,8 +19,15 @@ public class frmAsistencia extends javax.swing.JPanel {
      */
     public frmAsistencia() {
         initComponents();
+        actualizar2();
     }
+   public void actualizar2() {
 
+        D_Criticos func = new D_Criticos();
+        DefaultTableModel modelo2;
+        modelo2 = func.listarcriticosa();
+        Tablalistado.setModel(modelo2);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +47,7 @@ public class frmAsistencia extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tablalistado = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox<>();
 
@@ -77,7 +87,7 @@ public class frmAsistencia extends javax.swing.JPanel {
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
         add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 170, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,7 +98,7 @@ public class frmAsistencia extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tablalistado);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 830, 310));
 
@@ -104,6 +114,7 @@ public class frmAsistencia extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tablalistado;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -115,7 +126,6 @@ public class frmAsistencia extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
